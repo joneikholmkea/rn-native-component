@@ -8,13 +8,21 @@ export default function App() {
   const handlePickImage = async () => {
     try {
       const startTime = Date.now();
-      const imageBase64 = await CustomImagePickerModule.openPicker();
+      //const imageBase64 = await CustomImagePickerModule.openPicker();
       //const uri = await CustomImagePickerModule.openPicker();
-      console.log('Time to receive image URI: ', Date.now() - startTime, ' ms');
-      const startTime2 = Date.now();
-      setImage(`data:image/jpeg;base64,${imageBase64}`);
+      CustomImagePickerModule.openPicker()
+      .then(uri => {
+        console.log('Time to receive image URI: ', Date.now() - startTime, ' ms');
+        const startTime2 = Date.now();
+        setImage(uri);
+        console.log('Time to set image state: ', Date.now() - startTime2, ' ms');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      //setImage(`data:image/jpeg;base64,${imageBase64}`);
       //setImage(uri)
-      console.log('Time to set image state: ', Date.now() - startTime2, ' ms');
+      
 
     } catch (error) {
       console.log('Error', error.message);
