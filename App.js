@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button title="Pick an Image" onPress={handlePickImage} />
+      <Button title="Pick Image" onPress={handlePickImage} />
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
     </View>
   );
